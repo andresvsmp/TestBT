@@ -8,7 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="TestInterview" />
         <module name="seleniumproject" />
-        <module name="LTInterviewAV" />
+        <module name="LT_AV" />
       </profile>
     </annotationProcessing>
   </component>
