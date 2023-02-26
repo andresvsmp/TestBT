@@ -3,6 +3,7 @@ package com.crm.qa.pages;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
 public class NewCustomer {
 
@@ -41,6 +42,8 @@ public class NewCustomer {
         driver.findElement(By.name("LastContactDate")).sendKeys("12/12/2022");
         driver.findElement(By.id("Serenity_Demo_Northwind_CustomerDialog9_Email")).sendKeys("andresvasquez@gmail.com");
         scrollIntoView(driver.findElement(By.xpath("//*[starts-with(@class, 'panel-titlebar-text') ]")) , driver);
+        elementToBeClickable( By.xpath("//*[starts-with(@class, 'fa fa-check-circle text-purple') ]"));
+
 
         driver.findElement(By.xpath("//*[starts-with(@class, 'fa fa-check-circle text-purple') ]")).click();
     }
