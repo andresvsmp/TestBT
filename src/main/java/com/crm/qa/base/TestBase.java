@@ -28,19 +28,6 @@ public class TestBase {
     }
 
 
-    public static void initialization(){
-         String browserName = prop.getProperty("browser");
-         if (browserName.equals("chrome")){
-              driver = new ChromeDriver();
-         } else if (browserName.equals("FF")){
-             driver = new FirefoxDriver();
-         }
-         driver.manage().window().maximize();
-         driver.manage().deleteAllCookies();
-         driver.get(prop.getProperty("url"));
-
-    }
-
     public void setUp(){
 
         driver.manage().window().maximize(); //Maximize window
@@ -50,6 +37,7 @@ public class TestBase {
         loginPage.login("admin","serenity");
         String url = driver.getCurrentUrl();
         Assert.assertEquals(url,"https://demo.serenity.is/Account/Login/?ReturnUrl=%2F");
+
     }
 
     public void closedBrowser() {

@@ -3,7 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/../LTInterviewAV" vcs="" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/TestInterview" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/take-home-webdriver-test" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TestInterview" vcs="" />
+    <mapping directory="$PROJECT_DIR$/take-home-webdriver-test" vcs="" />
   </component>
 </project>
