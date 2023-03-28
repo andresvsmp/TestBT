@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 
-public class Products {
+public class ProductsAE {
 
     WebDriver driver;
 
@@ -18,7 +18,7 @@ public class Products {
     WebElement product;
 
     //Initializing the page Objects
-    public Products(WebDriver driver){
+    public ProductsAE(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }

@@ -1,10 +1,9 @@
 package com.crm.qa.base;
 
-import com.crm.qa.pages.HomePage;
-import com.crm.qa.pages.Products;
-import org.openqa.selenium.By;
+import com.crm.qa.pages.HomePageAE;
+import com.crm.qa.pages.MilesCarRental;
+import com.crm.qa.pages.ProductsAE;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.FileInputStream;
@@ -12,8 +11,6 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class TestBase {
@@ -38,24 +35,28 @@ public class TestBase {
         driver.manage().window().maximize(); //Maximize window
         driver.manage().deleteAllCookies(); // delete all the cookies
         driver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS); // dynamic wait
-        HomePage homePage = new HomePage(driver);
-        homePage.homepage();
+        HomePageAE homePageAE = new HomePageAE(driver);
+        homePageAE.homepage();
         String url = driver.getCurrentUrl();
         Assert.assertEquals(url,"https://automationexercise.com/"); //DOUBLE CHECK
         }
 
     public void product() {
 
-        Products products = new Products(driver);
-        products.products();
+        ProductsAE productsAE = new ProductsAE(driver);
+        productsAE.products();
 
     }
 
     public void setUp3() throws InterruptedException {
-
         driver.navigate().to("https://milescarrental.com/");
         String url = driver.getCurrentUrl();
-        Assert.assertEquals(url,"https://milescarrental.com/es/"); //DOUBLE CHECK
+        Assert.assertEquals(url,"https://milescarrental.com/es/");
+    }
+
+    public void fillI() throws InterruptedException {
+        MilesCarRental milesCarRental = new MilesCarRental(driver);
+        milesCarRental.fillIformation();
     }
 
     public void closedBrowser() {

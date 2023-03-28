@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-public class HomePage {
+public class HomePageAE {
 
     WebDriver driver;
 
@@ -19,7 +19,7 @@ public class HomePage {
     WebElement button;
 
     //Initializing the page Objects
-    public HomePage(WebDriver driver){
+    public HomePageAE(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
@@ -27,7 +27,6 @@ public class HomePage {
     public void homepage() throws InterruptedException {
         driver.get("https://automationexercise.com/");
         String video = button.getText();
-        System.out.println(video);
         Assert.assertEquals(video,"Video Tutorials"); //FIRST CHECK
     }
 
