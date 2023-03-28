@@ -1,14 +1,19 @@
 package com.crm.qa.base;
 
-import com.crm.qa.pages.LoginPage;
+import com.crm.qa.pages.HomePage;
+import com.crm.qa.pages.Products;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class TestBase {
@@ -28,20 +33,35 @@ public class TestBase {
     }
 
 
-    public void setUp(){
+    public void setUp() throws InterruptedException {
 
         driver.manage().window().maximize(); //Maximize window
         driver.manage().deleteAllCookies(); // delete all the cookies
         driver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS); // dynamic wait
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("admin","serenity");
+        HomePage homePage = new HomePage(driver);
+        homePage.homepage();
         String url = driver.getCurrentUrl();
-        Assert.assertEquals(url,"https://demo.serenity.is/Account/Login/?ReturnUrl=%2F");
+        Assert.assertEquals(url,"https://automationexercise.com/"); //DOUBLE CHECK
+        }
 
+    public void product() {
+
+        Products products = new Products(driver);
+        products.products();
+
+    }
+
+    public void setUp3() throws InterruptedException {
+
+        driver.navigate().to("https://milescarrental.com/");
+        String url = driver.getCurrentUrl();
+        Assert.assertEquals(url,"https://milescarrental.com/es/"); //DOUBLE CHECK
     }
 
     public void closedBrowser() {
         driver.quit();
     }
+
+
 
 }

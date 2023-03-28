@@ -7,19 +7,16 @@ import org.testng.annotations.*;
 public class Assignment extends TestBase {
 
     @Test
-    public void createContact() {
+    public void AutomationExercise2() throws InterruptedException {
         setUp();
-        NewContact contact = new NewContact(driver);
-        contact.newContact();
-
+        product();
     }
 
     @Test
-    public void createCustomer() {
-        setUp();
-        NewCustomer customer = new NewCustomer(driver);
-        customer.createCustomer();
+    public void MilesCarrental3() throws InterruptedException {
+        setUp3();
         closedBrowser();
     }
+
 
 }
