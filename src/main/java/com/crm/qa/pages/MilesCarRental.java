@@ -1,16 +1,14 @@
 package com.crm.qa.pages;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.JavascriptExecutor;
 
 import java.util.Calendar;
-import java.util.Date;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+import java.util.List;
 
 public class MilesCarRental {
 
@@ -34,11 +32,8 @@ public class MilesCarRental {
         System.out.println(date);
 
         //NAMES LOCATORS
-      //  String pickupLocationInput = "//*[contains(@id,'pickupLocation"+date+"')]";
-
         WebElement pickupLocationInput = driver.findElement(By.xpath("//*[contains(@id,'pickupLocation"+date+"')]"));
         WebElement pickupDateInput = driver.findElement( By.xpath("//*[contains(@id,'from-input"+date+"')]")  );
-        WebElement dropoffDateInput = driver.findElement(By.xpath("//*[contains(@id,'to-input"+date+"')]"));
         WebElement searchButton = driver.findElement(By.xpath("//*[contains(@id,'btnQS"+date+"')]"));
 
 
@@ -46,52 +41,49 @@ public class MilesCarRental {
         pickupLocationInput.click();
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//SPAN[@class='item-autocomplete__label'][text()='Aeropuerto de Florida Keys Marathon, Marathon, Florida, Estados Unidos']")));
-     //   driver.findElement(By.xpath("//*[text()='Aeropuerto de Florida Keys Marathon, Marathon, Florida, Estados Unidos']")).click();
-        driver.findElement(By.xpath("//SPAN[@class='item-autocomplete__label'][text()='Aeropuerto de Florida Keys Marathon, Marathon, Florida, Estados Unidos']")).click();
 
-        pickupDateInput.sendKeys("03/04/2023");
-        dropoffDateInput.sendKeys("03/05/2023");
+        //When the element is not clicleable
+       WebElement ele = driver.findElement(By.xpath("//SPAN[@class='item-autocomplete__label'][text()='Aeropuerto de Florida Keys Marathon, Marathon, Florida, Estados Unidos']"));
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click();", ele);
 
+        pickupDateInput.click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//DIV[@class='container__months columns-2']")));
+        //SCROLL DOWN TO CALENDAR
+        scrollIntoView(driver.findElement(By.xpath("//DIV[@class='day-item'][text()='28']")) , driver);
+
+        //When the element is not clicleable
+        WebElement date1 = driver.findElement(By.xpath("//DIV[@class='day-item'][text()='28']"));
+        JavascriptExecutor executor2 = (JavascriptExecutor)driver;
+        executor2.executeScript("arguments[0].click();", date1);
+
+        // Obtain all elements
+        List<WebElement> resultados = driver.findElements(By.xpath("//DIV[@class='day-item'][text()='4']"));
+      // Select the second one and click
+        resultados.get(1).click();
         searchButton.click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class,'button button-xxl-L | d-none d-lg-grid')]")));
+        //When the element is not clicleable
+        WebElement ele1 = driver.findElement(By.xpath("//DIV[@id='car_1']/div/div/div/button[@class='button button-xxl-L | d-none d-lg-grid']"));
+        JavascriptExecutor executor1 = (JavascriptExecutor)driver;
+        executor1.executeScript("arguments[0].click();", ele1);
 
-        /*
+        WebDriverWait wait2 = new WebDriverWait(driver, 20);
 
+        wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("selected-flag")));
+        scrollIntoView(driver.findElement(By.xpath("//*[contains(@id,'inpName')]")) , driver);
 
-
-        // Espera a que se carguen los resultados de la búsqueda
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("car-rental-item")));
-
-        // Recupera los resultados de la búsqueda
-        WebElement searchResults = driver.findElement(By.className("search-results"));
-
-        // Imprime los resultados de la búsqueda
-        System.out.println(searchResults.getText());
-        synchronized (driver){
-        driver.wait();
-        }
-        driver.findElement(By.xpath("//div[@class='form-qa_button']/a ")).click(); */
-      //  driver.navigate().to("https://milescarrental.com/car/index/search/searchkey/ZW5lcmdpemVlLTE2Nzk5NzgzOTkuNzYxOS0zMjgy/pickup_location_code/MTHT01/return_location_code/MTHT01/pickup_date/" +
-       //"04-28-2023/pickup_time/12%3A00/return_date/05-04-2023/return_time/12%3A00/vehicle_type_id/0/total_days/6/country_destination/US");
-
-       // driver.navigate().to("https://milescarrental.com/detail/ZW5lcmdpemVlLTE2Nzk5NzgzOTkuNzYxOS0zMjgy/b2aad9f4-e7a9-4510-b7d0-4ff03d0e15ec/tSqo3JWIZ9kkrTgAB%2FP666mHtUu2jvrC5BE84v55BMc%3D/1A/ZI/CCAR");
-
-       /* driver.findElement(By.id("inpName")).sendKeys("Andres Vasquez");
-        driver.findElement(By.id("phoneCustom")).sendKeys("3017714826");
-        driver.findElement(By.id("inpEmail")).sendKeys("3017714826");
-
-*/
-
-        // buttom.click();
-       // location.click();
-       // location.sendKeys("Florida Key Marathon");
-       // firstDate.click();
-      /*  Date1.click();
-        SecondDate.click();
-        Date2.click();
-        search.click(); */
+        WebElement nameUser = driver.findElement(By.xpath("//*[@id='inpName']"));
+        WebElement phoneUser = driver.findElement( By.xpath("//*[@id='phoneCustom']")  );
+        WebElement emailUser = driver.findElement(By.xpath("//*[@id='inpEmail']"));
+        WebElement submitB = driver.findElement(By.xpath("//BUTTON[@type='submit']"));
 
 
+        nameUser.sendKeys("AndresVasquez");
+        phoneUser.sendKeys("3017714826");
+        emailUser.sendKeys("vasquezandres@javeriana.edu.co");
+
+        submitB.click();
         /*
        scrollIntoView(driver.findElement(By.xpath("//*[starts-with(@class, 'panel-titlebar-text') ]")) , driver);
         elementToBeClickable( By.xpath("//*[starts-with(@class, 'fa fa-check-circle text-purple') ]"));
