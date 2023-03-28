@@ -6,15 +6,14 @@ import org.testng.annotations.*;
 
 public class Assignment extends TestBase {
 
-  /*  @Test
+   @Test
     public void AutomationExercise2() throws InterruptedException {
         setUp();
         product();
     }
-*/
+
     @Test
     public void MilesCarrental3() throws InterruptedException {
-        setUp();
         setUp3();
         fillI();
         closedBrowser();
