@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.util.Calendar;
 import java.util.List;
@@ -32,13 +33,11 @@ public class MilesCar4 {
         String day = Integer.toString(c.get(Calendar.DATE));
         String month = 0+Integer.toString(c.get(Calendar.MONTH)+1);
         String date = "2023"+month+day;
-        System.out.println(date);
 
         //NAMES LOCATORS
         WebElement pickupLocationInput = driver.findElement(By.xpath("//*[contains(@id,'pickupLocation"+date+"')]"));
         WebElement pickupDateInput = driver.findElement( By.xpath("//*[contains(@id,'from-input"+date+"')]")  );
         WebElement searchButton = driver.findElement(By.xpath("//*[contains(@id,'btnQS"+date+"')]"));
-
 
         pickupLocationInput.sendKeys("Lima");
         pickupLocationInput.click();
@@ -49,9 +48,9 @@ public class MilesCar4 {
         WebElement ele = driver.findElement(By.xpath("//SPAN[@class='item-autocomplete__label'][text()='Aeropuerto de Lihue, Lihue, Hawaii, Estados Unidos']"));
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", ele);
-
         pickupDateInput.click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//DIV[@class='container__months columns-2']")));
+
         //SCROLL DOWN TO CALENDAR
         scrollIntoView(driver.findElement(By.xpath("//DIV[@class='day-item'][text()='28']")) , driver);
 
@@ -66,49 +65,24 @@ public class MilesCar4 {
         resultados.get(1).click();
 
         //When the element is not clicleable
-        WebElement butto = driver.findElement(By.xpath("//*[contains(@id,'inpDiferentLocation20230328')]"));
+        WebElement butto = driver.findElement(By.xpath("//*[contains(@id,'inpDiferentLocation"+date+"')]"));
         JavascriptExecutor execut = (JavascriptExecutor)driver;
         execut.executeScript("arguments[0].click();", butto);
-
         driver.findElement(By.xpath("//*[contains(@id,'returnLocation"+date+"')]")).sendKeys("Washington");
-
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//SPAN[@class='item-autocomplete__label'][text()='Aeropuerto Internacional de Washington Dulles, Dulles, Virginia, Estados Unidos']")));
 
         //When the element is not clicleable
         WebElement retur = driver.findElement(By.xpath("//SPAN[@class='item-autocomplete__label'][text()='Aeropuerto Internacional de Washington Dulles, Dulles, Virginia, Estados Unidos']"));
         JavascriptExecutor exe = (JavascriptExecutor)driver;
         exe.executeScript("arguments[0].click();", retur);
-
         searchButton.click();
-      /*  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class,'button button-xxl-L | d-none d-lg-grid')]")));
-        //When the element is not clicleable
-        WebElement ele1 = driver.findElement(By.xpath("//DIV[@id='car_1']/div/div/div/button[@class='button button-xxl-L | d-none d-lg-grid']"));
-        JavascriptExecutor executor1 = (JavascriptExecutor)driver;
-        executor1.executeScript("arguments[0].click();", ele1);
+        WebDriverWait wait1 = new WebDriverWait(driver, 25);
+        wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//DIV[@class='alert alert--info ds-mb-XS']")));
 
-        WebDriverWait wait2 = new WebDriverWait(driver, 20);
+       // Assert.assertEquals(Alert,"Tarifas agotadas");
+        Assert.assertTrue(driver.findElement(By.xpath("//DIV[@class='alert alert--info ds-mb-XS']")).isDisplayed(),"No available");
 
-        wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("selected-flag")));
-        scrollIntoView(driver.findElement(By.xpath("//*[contains(@id,'inpName')]")) , driver);
-
-        WebElement nameUser = driver.findElement(By.xpath("//*[@id='inpName']"));
-        WebElement phoneUser = driver.findElement( By.xpath("//*[@id='phoneCustom']")  );
-        WebElement emailUser = driver.findElement(By.xpath("//*[@id='inpEmail']"));
-        WebElement submitB = driver.findElement(By.xpath("//BUTTON[@type='submit']"));
-
-
-        nameUser.sendKeys("AndresVasquez");
-        phoneUser.sendKeys("3017714826");
-        emailUser.sendKeys("vasquezandres@javeriana.edu.co");
-
-        submitB.click(); */
-        /*
-       scrollIntoView(driver.findElement(By.xpath("//*[starts-with(@class, 'panel-titlebar-text') ]")) , driver);
-        elementToBeClickable( By.xpath("//*[starts-with(@class, 'fa fa-check-circle text-purple') ]"));
-*/
     }
-
-
 
     //scroll until view something
     public void scrollIntoView(WebElement element, WebDriver driver){

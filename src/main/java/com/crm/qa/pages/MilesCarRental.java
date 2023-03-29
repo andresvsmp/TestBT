@@ -29,13 +29,11 @@ public class MilesCarRental {
         String day = Integer.toString(c.get(Calendar.DATE));
         String month = 0+Integer.toString(c.get(Calendar.MONTH)+1);
         String date = "2023"+month+day;
-        System.out.println(date);
 
         //NAMES LOCATORS
         WebElement pickupLocationInput = driver.findElement(By.xpath("//*[contains(@id,'pickupLocation"+date+"')]"));
         WebElement pickupDateInput = driver.findElement( By.xpath("//*[contains(@id,'from-input"+date+"')]")  );
         WebElement searchButton = driver.findElement(By.xpath("//*[contains(@id,'btnQS"+date+"')]"));
-
 
         pickupLocationInput.sendKeys("Florida");
         pickupLocationInput.click();
@@ -59,7 +57,7 @@ public class MilesCarRental {
 
         // Obtain all elements
         List<WebElement> resultados = driver.findElements(By.xpath("//DIV[@class='day-item'][text()='4']"));
-      // Select the second one and click
+       // Select the second one and click
         resultados.get(1).click();
         searchButton.click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class,'button button-xxl-L | d-none d-lg-grid')]")));
@@ -67,28 +65,19 @@ public class MilesCarRental {
         WebElement ele1 = driver.findElement(By.xpath("//DIV[@id='car_1']/div/div/div/button[@class='button button-xxl-L | d-none d-lg-grid']"));
         JavascriptExecutor executor1 = (JavascriptExecutor)driver;
         executor1.executeScript("arguments[0].click();", ele1);
-
         WebDriverWait wait2 = new WebDriverWait(driver, 20);
-
         wait2.until(ExpectedConditions.visibilityOfElementLocated(By.className("selected-flag")));
         scrollIntoView(driver.findElement(By.xpath("//*[contains(@id,'inpName')]")) , driver);
-
         WebElement nameUser = driver.findElement(By.xpath("//*[@id='inpName']"));
         WebElement phoneUser = driver.findElement( By.xpath("//*[@id='phoneCustom']")  );
         WebElement emailUser = driver.findElement(By.xpath("//*[@id='inpEmail']"));
         WebElement submitB = driver.findElement(By.xpath("//BUTTON[@type='submit']"));
-
-
         nameUser.sendKeys("AndresVasquez");
         phoneUser.sendKeys("3017714826");
         emailUser.sendKeys("vasquezandres@javeriana.edu.co");
 
         submitB.click();
-        /*
-       scrollIntoView(driver.findElement(By.xpath("//*[starts-with(@class, 'panel-titlebar-text') ]")) , driver);
-        elementToBeClickable( By.xpath("//*[starts-with(@class, 'fa fa-check-circle text-purple') ]"));
-*/
-    }
+}
 
 
     //scroll until view something

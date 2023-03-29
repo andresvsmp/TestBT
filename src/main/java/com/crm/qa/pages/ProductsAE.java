@@ -33,7 +33,6 @@ public class ProductsAE {
         driver.findElement(By.id("submit_search")).click();
         String product = driver.findElement(By.xpath("//div[@class='single-products']/div/p")).getText();
         Assert.assertEquals(product,"Men Tshirt");
-        WebDriverWait wait =  new WebDriverWait(driver,4);
 
     }
 
