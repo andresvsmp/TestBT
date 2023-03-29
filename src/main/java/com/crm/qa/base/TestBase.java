@@ -1,6 +1,7 @@
 package com.crm.qa.base;
 
 import com.crm.qa.pages.HomePageAE;
+import com.crm.qa.pages.MilesCar4;
 import com.crm.qa.pages.MilesCarRental;
 import com.crm.qa.pages.ProductsAE;
 import org.openqa.selenium.WebDriver;
@@ -57,6 +58,11 @@ public class TestBase {
     public void fillI() throws InterruptedException {
         MilesCarRental milesCarRental = new MilesCarRental(driver);
         milesCarRental.fillIformation();
+    }
+
+    public void milesCar() throws InterruptedException {
+        MilesCar4 milesCar4 = new MilesCar4(driver);
+        milesCar4.Template();
     }
 
     public void closedBrowser() {

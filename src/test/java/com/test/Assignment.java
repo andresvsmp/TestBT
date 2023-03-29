@@ -5,7 +5,7 @@ import com.crm.qa.pages.*;
 import org.testng.annotations.*;
 
 public class Assignment extends TestBase {
-
+/*
    @Test
     public void AutomationExercise2() throws InterruptedException {
         setUp();
@@ -16,8 +16,14 @@ public class Assignment extends TestBase {
     public void MilesCarrental3() throws InterruptedException {
         setUp3();
         fillI();
-        closedBrowser();
-    }
 
+    }
+*/
+    @Test
+    public void MilesCarrental4() throws InterruptedException {
+        setUp3();
+        milesCar();
+       // closedBrowser();
+    }
 
 }
